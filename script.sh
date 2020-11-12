@@ -66,6 +66,9 @@ do
     if [[ $truncate = "true" ]]
     then
       logMessage "Truncating database table: $destination_table" "INFO"
+      psql -d $DESTINATION_DATABASE -c "TRUNCATE $destination_table"
+      logMessage "Vacuuming database table: $destination_table" "DEBUG"
+      psql -d $DESTINATION_DATABASE -c "VACUUM $destination_table"
     fi
     logMessage "Inserting data in destination database table: $destination_table" "INFO"
     psql -d $DESTINATION_DATABASE -c "COPY $destination_table FROM '${TEMP_RANDOM_FILE}'" >> /dev/null 2>&1
