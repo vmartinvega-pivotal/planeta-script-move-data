@@ -23,7 +23,7 @@ Ejemplo
 ## Fichero de entrada
 El fichero de entrada estará compuesto por lineas separadas por pipes (|) siguiendo el siguiente formato:
 
-**sentencia origen|tabla destino|setencia post insercion|truncate**
+**sentencia origen  |  tabla destino  |  setencia post insercion  |  truncate**
 
 * **sentencia origen** indica la sentencia que se va a ejecutar en la base de datos origen.
 * **tabla destino** indica la tabla destino en la que se van a insertar los datos
