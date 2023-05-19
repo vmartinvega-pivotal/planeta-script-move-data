@@ -45,11 +45,11 @@ TEMP_RANDOM_FILE="/home/gpadmin/borrar_file"
 
 while IFS= read -r line
 do
-  source_sentence=$(cut -d'|' -f1 <<< $line)
-  destination_table=$(cut -d'|' -f2 <<< $line)
-  final_sentence=$(cut -d'|' -f3 <<< $line)
-  truncate=$(cut -d'|' -f4 <<< $line)
-  truncate=$(toLowerCase $truncate)  
+  source_sentence=$(echo "${line}" | cut -d'|' -f1)
+  destination_table=$(echo "${line}" | cut -d'|' -f2)
+  final_sentence=$(echo "${line}" | cut -d'|' -f3)
+  truncate=$(echo "${line}" | cut -d'|' -f4)
+  truncate=$(toLowerCase "${truncate}")
 
   logMessage "Source Greenplum sentence: $source_sentence" "DEBUG"
   logMessage "Destination Greenplum table: $destination_table" "DEBUG"
