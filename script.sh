@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"
+
 while [ "$1" != "" ]; do
     case $1 in
         -s | --source )         shift
@@ -36,7 +38,7 @@ fi
 # Source utils
 echo "Sourcing files..."
 echo ""
-source log-utils.sh
+source ${SCRIPT_DIR}/log-utils.sh
 
 # Init log file
 initLogs
