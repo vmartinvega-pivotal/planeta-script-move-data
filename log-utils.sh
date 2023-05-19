@@ -2,6 +2,8 @@
 
 declare -A levels=([VERBOSE]=0 [DEBUG]=1 [INFO]=2 [WARN]=3 [ERROR]=4)
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"
+
 # Default to VERBOSE if not defined the environment variable
 if [[ ! -v script_logging_level ]] || [[ -z "$script_logging_level" ]]; then
   script_logging_level="VERBOSE"
@@ -9,13 +11,13 @@ fi
 
 initLogs(){
     # If the logs folder does not exist, creates it
-    if [ ! -d "$(pwd)/logs" ]; then
-        mkdir "logs"
+    if [ ! -d "${SCRIPT_DIR}/logs" ]; then
+        mkdir "${SCRIPT_DIR}/logs"
     fi
 
     NOW=`date '+%Y-%m-%d_%H_%M'`
 
-    export LOG_FILE_NAME="$(pwd)/logs/script_${NOW}.log"
+    export LOG_FILE_NAME="${SCRIPT_DIR}/logs/script_${NOW}.log"
     
     echo "Saving logs to file: ${LOG_FILE_NAME}"
     echo ""
