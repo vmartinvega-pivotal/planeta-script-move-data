@@ -59,7 +59,9 @@ do
   logMessage "Executing sentences..." "INFO"
   echo ""
   logMessage "Reading data from source sentence: $source_sentence" "INFO"
-  rm -f ${TEMP_RANDOM_FILE}
+  if [[ -f "$TEMP_RANDOM_FILE" ]]; then
+    rm -f ${TEMP_RANDOM_FILE}
+  fi
   psql -d $SOURCE_DATABASE -c "COPY (${source_sentence}) TO '${TEMP_RANDOM_FILE}'" >> /dev/null 2>&1
   if [ $? -eq 0 ]
   then
